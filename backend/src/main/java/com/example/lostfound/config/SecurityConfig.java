@@ -19,6 +19,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Configuration
 public class SecurityConfig {
@@ -55,10 +56,12 @@ public class SecurityConfig {
         CorsConfiguration c = new CorsConfiguration();
 
         c.setAllowedOrigins(
-            Arrays.stream(origins.split("[,;]"))
-                .map(String::trim)
-                .filter(origin -> !origin.isEmpty())
-                .toList()
+            Stream.concat(
+                Arrays.stream(origins.split("[,;]"))
+                    .map(String::trim)
+                    .filter(origin -> !origin.isEmpty()),
+                Stream.of("https://lost-found-two-tau.vercel.app")
+            ).distinct().toList()
         );
 
         c.setAllowedMethods(List.of(
