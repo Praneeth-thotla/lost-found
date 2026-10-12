@@ -55,7 +55,7 @@ public class SecurityConfig {
         CorsConfiguration c = new CorsConfiguration();
 
         c.setAllowedOrigins(
-            Arrays.stream(origins.split(","))
+            Arrays.stream(origins.split("[,;]"))
                 .map(String::trim)
                 .filter(origin -> !origin.isEmpty())
                 .toList()
