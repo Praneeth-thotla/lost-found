@@ -1,6 +1,7 @@
 import React,{useEffect,useState}from'react';
 import{Search,Plus,LogIn,LogOut,PackageSearch,MapPin,CalendarDays,UserRound,X,CheckCircle2,AlertCircle,Trash2,Pencil,RefreshCw}from'lucide-react';
-const API=(import.meta.env.VITE_API_BASE_URL||'http://localhost:8080/api').replace(/\/$/,'');
+const API_BASE=(import.meta.env.VITE_API_BASE_URL||'http://localhost:8080').replace(/\/+$/,'');
+const API=API_BASE.endsWith('/api')?API_BASE:`${API_BASE}/api`;
 const empty={title:'',type:'LOST',category:'Other',location:'',incidentDate:new Date().toISOString().slice(0,10),description:'',status:'LOST',contactPhone:''};
 async function api(path,opts={}){let token=localStorage.getItem('lf_token');let r=await fetch(API+path,{...opts,headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{}),...(opts.headers||{})}});let d=r.status===204?null:await r.json().catch(()=>null);if(!r.ok)throw Error(d?.message||d?.detail||`Request failed (${r.status})`);return d}
 export default function App(){
