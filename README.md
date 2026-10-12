@@ -41,13 +41,13 @@ Set `VITE_API_BASE_URL=http://localhost:8080/api`.
 2. Create a Render Web Service from the repository, set Root Directory to `backend`.
 3. Build command: `mvn -DskipTests package`
 4. Start command: `java -Dserver.port=$PORT -jar target/lost-found-portal-0.0.1-SNAPSHOT.jar`
-5. Add `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET`, and `CORS_ALLOWED_ORIGINS` in Render environment settings. Set the last value to your deployed Vercel origin, e.g. `https://your-project.vercel.app`.
+5. Add `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET`, and `CORS_ALLOWED_ORIGINS` in Render environment settings. Set `CORS_ALLOWED_ORIGINS` to `https://lost-found-two-tau.vercel.app` (add any other permitted frontend origins as comma-separated values).
 6. Deploy and check `/api/health`.
 
 ## Deploy frontend to Vercel
 1. Import GitHub repository.
 2. Set Root Directory to `frontend`, framework preset to Vite.
-3. Add `VITE_API_BASE_URL=https://YOUR-RENDER-SERVICE.onrender.com/api`.
+3. Add `VITE_API_BASE_URL=https://YOUR-RENDER-SERVICE.onrender.com/api` (do not use `localhost` for the deployed frontend).
 4. Deploy.
 
 ## REST API
