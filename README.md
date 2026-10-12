@@ -47,8 +47,8 @@ Set `VITE_API_BASE_URL=http://localhost:8080/api`.
 ## Deploy frontend to Vercel
 1. Import GitHub repository.
 2. Set Root Directory to `frontend`, framework preset to Vite.
-3. Add `VITE_API_BASE_URL=https://YOUR-RENDER-SERVICE.onrender.com/api` (do not use `localhost` for the deployed frontend).
-4. Deploy.
+3. The frontend uses a Vercel rewrite to proxy `/api/*` requests to the Render backend, so no `VITE_API_BASE_URL` environment variable is needed in Vercel.
+4. Deploy or redeploy after pushing changes to `frontend/src/App.jsx` and `frontend/vercel.json`.
 
 ## REST API
 - `POST /api/auth/register` — `{ "name": "...", "email": "...", "password": "..." }`
